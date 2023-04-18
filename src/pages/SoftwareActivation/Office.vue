@@ -7,7 +7,7 @@ import { useScript } from '@/hooks/useScript'
 const formData = reactive({
   officeVersion: '',
   systemVersion: '',
-  kmsUrl: 'kms.moeclub.org',
+  kmsUrl: '192.168.31.2',
   secretKey: '',
 })
 
