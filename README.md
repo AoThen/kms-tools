@@ -67,6 +67,16 @@ pnpm run build
 pnpm run preview
 ```
 
+### Windows构建打包
+
+```cmd
+npm install pnpm
+kms-tools-master\node_modules\.bin\pnpm.cmd install
+kms-tools-master\node_modules\.bin\pnpm.cmd run dev
+kms-tools-master\node_modules\.bin\pnpm.cmd run build
+```
+发表dist目录
+
 ## ⭐ 星星
 
 ![](https://starchart.cc/ikxin/kms-tools.svg)
