@@ -8,7 +8,7 @@ const { t } = useI18n()
 const formData = reactive({
   version: '',
   edition: '',
-  service: 'kms.moeclub.org',
+  service: '192.168.31.2',
   license: '',
 })
 
