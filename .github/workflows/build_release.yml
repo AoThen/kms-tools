@@ -1,7 +1,7 @@
 name: Build Release
 
 on:
-  push:
+  # push:
   workflow_dispatch:
 
 
@@ -14,7 +14,7 @@ jobs:
       
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
 
     steps:
       - name: Checkout Code
@@ -27,31 +27,38 @@ jobs:
           pnpm install && pnpm build
           cd dist && zip -q -r kms-tools.zip * && mv kms-tools.zip ../ && cd ..
 
-      - name: Read Version
-        id: version
-        uses: ashley-taylor/read-json-property-action@v1.0
-        with:
-          path: ./package.json
-          property: version
+      # - name: Read Version
+      #   id: version
+      #   uses: ashley-taylor/read-json-property-action@v1.0
+      #   with:
+      #     path: ./package.json
+      #     property: version
 
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Artifact
+        uses: actions/upload-artifact@main
+        if: ${{ inputs.artifact }}
         with:
-          tag_name: v${{ steps.version.outputs.value }}
-          release_name: v${{ steps.version.outputs.value }}
-          draft: false
-          prerelease: false
+          name: kms-tools
+          path: |
+            ./dist
+            
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #   with:
+      #     tag_name: v${{ steps.version.outputs.value }}
+      #     release_name: v${{ steps.version.outputs.value }}
+      #     draft: false
+      #     prerelease: false
 
-      - name: Upload Release
-        uses: actions/upload-release-asset@latest
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./kms-tools.zip
-          asset_name: kms-tools-v${{ steps.version.outputs.value }}.zip
-          asset_content_type: application/zip
+      # - name: Upload Release
+      #   uses: actions/upload-release-asset@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./kms-tools.zip
+      #     asset_name: kms-tools-v${{ steps.version.outputs.value }}.zip
+      #     asset_content_type: application/zip
