@@ -5,11 +5,12 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ArcoResolver } from 'unplugin-vue-components/resolvers'
-import Markdown from 'vite-plugin-vue-markdown'
+import Markdown from 'unplugin-vue-markdown/vite'
 import Shiki from 'markdown-it-shiki'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   plugins: [
@@ -45,6 +46,7 @@ export default defineConfig({
       ],
     }),
     VueI18nPlugin({}),
+    VueDevTools(),
   ],
   resolve: {
     alias: {

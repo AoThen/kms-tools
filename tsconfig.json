@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "module": "ESNext",
+    "target": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": { "@/*": ["src/*"] },
-    "skipLibCheck": true,
-    "types": ["bun-types"]
+    "skipLibCheck": true
   },
   "include": ["**/*.vue", "**/*.ts", "**/*.d.ts"]
 }
