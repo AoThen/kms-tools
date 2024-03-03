@@ -24,7 +24,7 @@ jobs:
         run: |
           npm install pnpm --location=global
           npm install bun
-          pnpm install && pnpm build
+          pnpm install && pnpm build && pnpm preview
           cd dist && zip -q -r kms-tools.zip * && mv kms-tools.zip ../ && cd ..
 
       # - name: Read Version
