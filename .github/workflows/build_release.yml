@@ -1,7 +1,7 @@
 name: Build Release
 
 on:
-  # push:
+  push:
   workflow_dispatch:
 
 
@@ -24,6 +24,7 @@ jobs:
         run: |
           npm install pnpm --location=global
           npm install bun
+          pnpm install --no-frozen-lockfile
           pnpm install && pnpm build && pnpm preview
           cd dist && zip -q -r kms-tools.zip * && mv kms-tools.zip ../ && cd ..
 
